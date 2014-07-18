@@ -11,9 +11,9 @@ use \com\bmw\developer\cloud\c1\data as sdk;
                                             new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"));
     // create table configuration for table cells in a link
     $tableConfig = new sdk\TableConfigRelWidths(array(
-                                                    new sdk\TableColRelWidth(20, "caption"),
+                                                    new sdk\TableColRelWidth(30, "caption"),
                                                     new sdk\TableColRelWidth(50, "caption"),
-                                                    new sdk\TableColRelWidth(30, "caption")));
+                                                    new sdk\TableColRelWidth(20, "caption")));
     $main->addTableConfiguration($tableConfig);
     $manifest->addScreen("mainScreen", $main);
     // create search list page
