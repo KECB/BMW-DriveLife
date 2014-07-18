@@ -137,23 +137,17 @@ function getDetailPage($uid)
     $Description=$resultArray[0]['Description'];
 
     $page = new sdk\page\TextWithToolbarPage();
-
-    // if ($name!='') {
-    //     $
-    // }
+    //
     $currentParagraph = new sdk\component\Paragraph();
     $currentParagraph->setText($name);
-    $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
 
     $currentParagraph = new sdk\component\Paragraph();
     $currentParagraph->setText($address);
-    $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
 
     $currentParagraph = new sdk\component\Paragraph();
     $currentParagraph->setText($telephone);
-    $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
 
     $currentParagraph = new sdk\component\Paragraph();
