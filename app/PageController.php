@@ -87,7 +87,7 @@ function getMainPage()
          //     continue;    
          // }
         $tempLink = new sdk\component\LinkColumns(SCREEN_ID_DETAILPAGE);
-        if ($address='') {
+        if ($address=='') {
             # code...
             $tempLink->addCell(new sdk\component\TableCell($startTime))->addCell(new sdk\component\TableCell($Description))->addCell(new sdk\component\TableCell($name));
         }else{
