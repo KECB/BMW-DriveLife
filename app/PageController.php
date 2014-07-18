@@ -9,7 +9,8 @@ define("SCREEN_ID_MAIN", "mainScreen");
 define("SCREEN_ID_DETAILPAGE", "detailPage");
 
 // define for http request
-define("SEARCH_LIST_URL", 'http://115.28.141.68/BMW/index.php');
+$userId='test';
+define("SEARCH_LIST_URL", 'http://115.28.141.68/BMW/index.php/home/Index/index/userId/'. $userId);
  
 // get sid 
 $sid = sessionID();
@@ -56,52 +57,37 @@ function getMainPage()
  //                           'ak' => '869f0962811faf2b184ad35d4e485b27'
  //    );
      
-    // $resultData = getPageData(SEARCH_LIST_URL,$postDataArray);
-    // $jsondecode = convertToJSON($resultData);
-    // $resultArray = end($jsondecode);
-    // $countArray = count($resultArray);
+    $resultData = getPageData(SEARCH_LIST_URL,$postDataArray);
+    $jsondecode = convertToJSON($resultData);
+    $resultArray = end($jsondecode);
+    $countArray = count($resultArray);
  
     // create Composite List Page
     $page = new sdk\page\LinksPage();
-    // for ($i=0 ; $i < 3 ; $i++) { 
-        # code...
-    $uid = '1';
-    $telephone = '3333';
-    $name = 'Jack';
-    $address = 'LongLanRoad';
-    $tempLink = new sdk\component\LinkColumns(SCREEN_ID_MAIN);
-    $tempLink->addCell(new sdk\component\TableCell($name))->addCell(new sdk\component\TableCell($address))->addCell(new sdk\component\TableCell($telephone));
-    $tempLink->addReturnParam("uid", $uid);
-    $page->addLink($tempLink);
-    // }
  
-    // for( $i = 0; $i < $countArray; $i++)
-    // {
-    //     $temp = each($resultArray);
-    //     $itemDataArray = $temp['value'];
-    //     $name = $itemDataArray['name'];
-    //     $address = $itemDataArray['address'];
-    //     $telephone = $itemDataArray['telephone'];
-    //     //only display result which has address and telephone
-    //     // if($address == null)
-    //     // {
-    //     //     $address = '/';
-    //     //     continue;
-    //     // }
-    //     // if($telephone == null)
-    //     // {
-    //     //     $telephone = '/';
-    //     //     continue;    
-    //     // }
-    //     $uid = $itemDataArray['uid'];
-    //     $location = $itemDataArray['location'];
-    //     $lat = $location['lat'];
-    //     $lon = $location['lng'];
-    //     $tempLink = new sdk\component\LinkColumns(SCREEN_ID_SEARCHRESULT);
-    //     $tempLink->addCell(new sdk\component\TableCell($name))->addCell(new sdk\component\TableCell($address))->addCell(new sdk\component\TableCell($telephone));
-    //     $tempLink->addReturnParam("uid", $uid);
-    //     $page->addLink($tempLink);
-    // }
+    for( $i = 0; $i < $countArray; $i++)
+    {
+        $uid=$resultArray[$i]['Id'];
+        $name=$resultArray[$i]['Contact'];
+        $address=$resultArray[$i]['Location'];
+        $telephone=$resultArray[$i]['Mobile']; 
+        $Description=$resultArray[$i]['Description'];
+         //only display result which has address and telephone
+         // if($address == null)
+         // {
+         //     $address = '/';
+         //     continue;
+         // }
+         // if($telephone == null)
+         // {
+         //     $telephone = '/';
+         //     continue;    
+         // }
+        $tempLink = new sdk\component\LinkColumns(SCREEN_ID_MAIN);
+        $tempLink->addCell(new sdk\component\TableCell($name))->addCell(new sdk\component\TableCell($address))->addCell(new sdk\component\TableCell($telephone));
+        $tempLink->addReturnParam("uid", $uid);
+        $page->addLink($tempLink);
+    }
     return $page;
 }
 
@@ -132,7 +118,11 @@ function getDetailPage($uid)
     // $contactInformation->setPhone($telephone);
     // $contactInformation->setUrl("www.bmw.com");
     // $page = new sdk\page\PoiDetailPage($contactInformation, $_SESSION[KEYWORD]);
+    //http://img0.tuicool.com/3AV3I3.jpg
     $page = new sdk\page\TextPage();
+    $currentParagraph = new sdk\component\Paragraph("test");
+    $currentParagraph->setText("jjj\n kkk\n lll".$uid);
+    $page->addParagraph($currentParagraph);
     return $page;
 }
 
