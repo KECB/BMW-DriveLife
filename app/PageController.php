@@ -161,8 +161,15 @@ function getDetailPage($uid)
     $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
 
-    $toolbarPhoneButton = new sdk\component\ToolbarPhoneButton($telephone,$telephone);
-    $page->addToolbarItem($toolbarPhoneButton);
+    if ($telephone!='') {
+        $toolbarPhoneButton = new sdk\component\ToolbarPhoneButton($telephone,$telephone);
+        $page->addToolbarItem($toolbarPhoneButton);
+    }
+    if ($address!='') {
+        $poiEntry = new sdk\component\PoiEntry($address,"31.225631,121.481483");
+        $toolbarNavButton = new sdk\component\ToolbarNavButton($poiEntry,$address);
+        $page->addToolbarItem($ToolbarNavButton);
+    }
     
     return $page;
 }
