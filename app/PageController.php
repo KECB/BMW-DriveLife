@@ -69,6 +69,7 @@ function getMainPage()
     for( $i = 0; $i < $countArray; $i++)
     {
         $uid=$resultArray[$i]['Id'];
+        $startTime = $resultArray[$i]['StartTime'];
         $name=$resultArray[$i]['Contact'];
         $address=$resultArray[$i]['Location'];
         $telephone=$resultArray[$i]['Mobile']; 
@@ -85,7 +86,12 @@ function getMainPage()
          //     continue;    
          // }
         $tempLink = new sdk\component\LinkColumns(SCREEN_ID_DETAILPAGE);
-        $tempLink->addCell(new sdk\component\TableCell($name))->addCell(new sdk\component\TableCell($address))->addCell(new sdk\component\TableCell($telephone));
+        if ($address='') {
+            # code...
+            $tempLink->addCell(new sdk\component\TableCell($startTime))->addCell(new sdk\component\TableCell($Description))->addCell(new sdk\component\TableCell($name));
+        }else{
+            $tempLink->addCell(new sdk\component\TableCell($startTime))->addCell(new sdk\component\TableCell($address))->addCell(new sdk\component\TableCell($name));
+        }
         $tempLink->addReturnParam("uid", $uid);
         $page->addLink($tempLink);
     }
