@@ -27,7 +27,7 @@ try{
             echo $main -> toJson();
             break;
         case SCREEN_ID_DETAILPAGE:
-            $eventsPage = getDetailPage($_GET['uid']);
+            $eventsPage = getDetailPage($_GET['uid'],$_GET['Contact'],$_GET['Location'],$_GET['Mobile']);
             echo $eventsPage->toJson();
             break;
         default:
@@ -86,12 +86,15 @@ function getMainPage()
         $tempLink = new sdk\component\LinkColumns(SCREEN_ID_DETAILPAGE);
         $tempLink->addCell(new sdk\component\TableCell($name))->addCell(new sdk\component\TableCell($address))->addCell(new sdk\component\TableCell($telephone));
         $tempLink->addReturnParam("uid", $uid);
+        $tempLink->addReturnParam("Contact",$contact);
+        $tempLink->addReturnParam("Location",$location);
+        $tempLink->addReturnParam("Mobile",$mobile);
         $page->addLink($tempLink);
     }
     return $page;
 }
 
-function getDetailPage($uid)
+function getDetailPage($uid,$contact,$location,$mobile)
 {
     // baidu poi detail
     // $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
@@ -121,7 +124,16 @@ function getDetailPage($uid)
     //http://img0.tuicool.com/3AV3I3.jpg
     $page = new sdk\page\TextPage();
     $currentParagraph = new sdk\component\Paragraph();
-    $currentParagraph->setText("jjjlll".$uid);
+    $currentParagraph->setText($contact);
+    $currentParagraph->setTTS(true);
+    $page->addParagraph($currentParagraph);
+    $currentParagraph = new sdk\component\Paragraph();
+    $currentParagraph->setText($location);
+    $currentParagraph->setTTS(true);
+    $page->addParagraph($currentParagraph);
+    $currentParagraph = new sdk\component\Paragraph();
+    $currentParagraph->setText($mobile);
+    $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
     return $page;
 }
