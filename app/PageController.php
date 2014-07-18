@@ -127,14 +127,8 @@ function getDetailPage($uid,$contact,$location,$mobile)
     $currentParagraph->setText($contact);
     $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
-    $currentParagraph = new sdk\component\Paragraph();
-    $currentParagraph->setText($location);
-    $currentParagraph->setTTS(true);
-    $page->addParagraph($currentParagraph);
-    $currentParagraph = new sdk\component\Paragraph();
-    $currentParagraph->setText($mobile);
-    $currentParagraph->setTTS(true);
-    $page->addParagraph($currentParagraph);
+    
+    
     return $page;
 }
 
