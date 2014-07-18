@@ -132,7 +132,7 @@ function getDetailPage($uid)
     // $contactInformation->setPhone($telephone);
     // $contactInformation->setUrl("www.bmw.com");
     // $page = new sdk\page\PoiDetailPage($contactInformation, $_SESSION[KEYWORD]);
-    $page = new sdk\page\TablePage();
+    $page = new sdk\page\TextPage();
     return $page;
 }
 
