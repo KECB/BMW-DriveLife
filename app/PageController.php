@@ -70,6 +70,7 @@ function getMainPage()
     {
         $uid=$resultArray[$i]['Id'];
         $startTime = $resultArray[$i]['StartTime'];
+        $startTime = substr ($startTime, 5);
         $name=$resultArray[$i]['Contact'];
         $address=$resultArray[$i]['Location'];
         $telephone=$resultArray[$i]['Mobile']; 
