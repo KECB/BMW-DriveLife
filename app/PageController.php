@@ -165,12 +165,7 @@ function getDetailPage($uid)
         $toolbarPhoneButton = new sdk\component\ToolbarPhoneButton($telephone,$telephone);
         $page->addToolbarItem($toolbarPhoneButton);
     }
-    if ($address!='') {
-        $coordinates = new sdk\component\Coordinates("31.225631","121.481483");
-        $poiEntry = new sdk\component\PoiEntry($address,$coordinates);
-        $toolbarNavButton = new sdk\component\ToolbarNavButton($poiEntry,$address);
-        $page->addToolbarItem($ToolbarNavButton);
-    }
+    
     
     return $page;
 }
