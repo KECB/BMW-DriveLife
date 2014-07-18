@@ -27,7 +27,7 @@ try{
             echo $main -> toJson();
             break;
         case SCREEN_ID_DETAILPAGE:
-            $eventsPage = getDetailPage($_GET['uid'],$_GET['Contact'],$_GET['Location'],$_GET['Mobile']);
+            $eventsPage = getDetailPage($_GET['uid'],$_GET['contact'],$_GET['location'],$_GET['mobile']);
             echo $eventsPage->toJson();
             break;
         default:
@@ -86,9 +86,9 @@ function getMainPage()
         $tempLink = new sdk\component\LinkColumns(SCREEN_ID_DETAILPAGE);
         $tempLink->addCell(new sdk\component\TableCell($name))->addCell(new sdk\component\TableCell($address))->addCell(new sdk\component\TableCell($telephone));
         $tempLink->addReturnParam("uid", $uid);
-        $tempLink->addReturnParam("Contact",$contact);
-        $tempLink->addReturnParam("Location",$location);
-        $tempLink->addReturnParam("Mobile",$mobile);
+        $tempLink->addReturnParam("contact",$contact);
+        $tempLink->addReturnParam("location",$location);
+        $tempLink->addReturnParam("mobile",$mobile);
         $page->addLink($tempLink);
     }
     return $page;
@@ -127,7 +127,7 @@ function getDetailPage($uid,$contact,$location,$mobile)
     $currentParagraph->setText($contact);
     $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
-    
+
     
     return $page;
 }
