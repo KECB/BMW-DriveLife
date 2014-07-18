@@ -161,6 +161,8 @@ function getDetailPage($uid)
     $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
 
+    $toolbarPhoneButton = new sdk\component\ToolbarPhoneButton($telephone,$name);
+    $page->addToolbarItem($toolbarPhoneButton);
     
     return $page;
 }
