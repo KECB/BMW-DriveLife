@@ -83,7 +83,7 @@ function getMainPage()
          //     $telephone = '/';
          //     continue;    
          // }
-        $tempLink = new sdk\component\LinkColumns(SCREEN_ID_MAIN);
+        $tempLink = new sdk\component\LinkColumns(SCREEN_ID_DETAILPAGE);
         $tempLink->addCell(new sdk\component\TableCell($name))->addCell(new sdk\component\TableCell($address))->addCell(new sdk\component\TableCell($telephone));
         $tempLink->addReturnParam("uid", $uid);
         $page->addLink($tempLink);
