@@ -136,7 +136,11 @@ function getDetailPage($uid)
     $telephone=$resultArray[0]['Mobile']; 
     $Description=$resultArray[0]['Description'];
 
-    $page = new sdk\page\TextPage();
+    $page = new sdk\page\CompositeListWithToolbarPage();
+
+    // if ($name!='') {
+    //     $
+    // }
     $currentParagraph = new sdk\component\Paragraph();
     $currentParagraph->setText($name);
     $currentParagraph->setTTS(true);
