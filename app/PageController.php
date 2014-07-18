@@ -120,8 +120,8 @@ function getDetailPage($uid)
     // $page = new sdk\page\PoiDetailPage($contactInformation, $_SESSION[KEYWORD]);
     //http://img0.tuicool.com/3AV3I3.jpg
     $page = new sdk\page\TextPage();
-    $currentParagraph = new sdk\component\Paragraph("test");
-    $currentParagraph->setText("jjj\n kkk\n lll".$uid);
+    $currentParagraph = new sdk\component\Paragraph();
+    $currentParagraph->setText("jjjlll".$uid);
     $page->addParagraph($currentParagraph);
     return $page;
 }
