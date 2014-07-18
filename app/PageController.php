@@ -11,6 +11,7 @@ define("SCREEN_ID_DETAILPAGE", "detailPage");
 // define for http request
 $userId='test';
 define("SEARCH_LIST_URL", 'http://115.28.141.68/BMW/index.php/home/Index/index/userId/'. $userId);
+define("DETAILPAGE_URL", 'http://115.28.141.68/BMW/index.php/home/Index/getDetailData/id/');
  
 // get sid 
 $sid = sessionID();
@@ -119,9 +120,33 @@ function getDetailPage($uid)
     // $contactInformation->setUrl("www.bmw.com");
     // $page = new sdk\page\PoiDetailPage($contactInformation, $_SESSION[KEYWORD]);
     //http://img0.tuicool.com/3AV3I3.jpg
+    $resultData = getPageData(DETAILPAGE_URL.$uid,$postDataArray);
+    $jsondecode = convertToJSON($resultData);
+    $resultArray = end($jsondecode);
+    $countArray = count($resultArray);
+    $name=$resultArray[0]['Contact'];
+    $address=$resultArray[0]['Location'];
+    $telephone=$resultArray[0]['Mobile']; 
+    $Description=$resultArray[0]['Description'];
+
     $page = new sdk\page\TextPage();
     $currentParagraph = new sdk\component\Paragraph();
-    $currentParagraph->setText("back to our life");
+    $currentParagraph->setText($name);
+    $currentParagraph->setTTS(true);
+    $page->addParagraph($currentParagraph);
+
+    $currentParagraph = new sdk\component\Paragraph();
+    $currentParagraph->setText($address);
+    $currentParagraph->setTTS(true);
+    $page->addParagraph($currentParagraph);
+
+    $currentParagraph = new sdk\component\Paragraph();
+    $currentParagraph->setText($telephone);
+    $currentParagraph->setTTS(true);
+    $page->addParagraph($currentParagraph);
+
+    $currentParagraph = new sdk\component\Paragraph();
+    $currentParagraph->setText($Description);
     $currentParagraph->setTTS(true);
     $page->addParagraph($currentParagraph);
 
