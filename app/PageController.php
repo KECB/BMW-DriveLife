@@ -136,7 +136,7 @@ function getDetailPage($uid)
     $telephone=$resultArray[0]['Mobile']; 
     $Description=$resultArray[0]['Description'];
 
-    $page = new sdk\page\CompositeListWithToolbarPage();
+    $page = new sdk\page\TextWithToolbarPage();
 
     // if ($name!='') {
     //     $

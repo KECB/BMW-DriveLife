@@ -17,7 +17,7 @@ use \com\bmw\developer\cloud\c1\data as sdk;
     $main->addTableConfiguration($tableConfig);
     $manifest->addScreen("mainScreen", $main);
     // create search list page
-    $detailPage = new sdk\manifest\CompositeListWithToolbarPageScreen(new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"),
+    $detailPage = new sdk\manifest\TextWithToolbarPageScreen(new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"),
                                                    new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"),
                                                    new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"));
     
