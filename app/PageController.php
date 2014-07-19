@@ -222,14 +222,31 @@ function getPoiDetailPage($uid,$latitude,$longitude)
     // $location = $itemDataArray['location'];
     // $lat = $location['lat'];
     // $lon = $location['lng'];
-    
-    $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval("33.3333"), doubleval("122.1122")));
-    $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
-    // $contactInformation->setEmail("BMWBill@bmw.com");
+    // baidu poi detail
+    $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
+            'output' => 'json',
+            'scope' => '2',
+            'uid' => '8ee4560cf91d160e6cc02cd7'
+    );
+ 
+    $resultData = getPageData(SEARCH_POI_DETAIL_URL,$postDataArray);
+    $jsondecode = convertToJSON($resultData);
+    $resultArray = end($jsondecode);
+    $itemDataArray = $resultArray;
+ 
+    $name = $itemDataArray['name'];
+    $address = $itemDataArray['address'];
+    $telephone = $itemDataArray['telephone'];
+    $location = $itemDataArray['location'];
+    $lat = $location['lat'];
+    $lon = $location['lng'];
+ 
+    $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
+    $contactInformation->setAddress(new sdk\component\Address("", "", "", "ÖÐ¹ú", $address));
+    $contactInformation->setEmail("BMWBill@bmw.com");
     $contactInformation->setPhone($telephone);
-    // $contactInformation->setUrl($Description);
-    
-    $page = new sdk\page\PoiDetailPage($contactInformation, $name);
+    $contactInformation->setUrl("www.bmw.com");
+    $page = new sdk\page\PoiDetailPage($contactInformation, '宝马');
     return $page;
 }
 
