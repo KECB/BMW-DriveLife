@@ -203,7 +203,7 @@ function getPoiDetailPage($userid)
         $lat = $location['lat'];
         $lon = $location['lng'];
         if ($poiUid!='') {
-            echo $poiUid;
+            echo 'poiUid:'.$poiUid;
             break;
         }
     }
