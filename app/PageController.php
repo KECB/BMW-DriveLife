@@ -174,32 +174,37 @@ function getPoiDetailPage($uid,$latitude,$longitude)
     $jsondecode = convertToJSON($resultData);
     $resultArray = end($jsondecode);
     $countArray = count($resultArray);
-    $temp = each($resultArray);
-    $itemDataArray = $temp['value'];
-    $name = $itemDataArray['name'];
-    $address = $itemDataArray['address'];
-    $telephone = $itemDataArray['telephone'];
-    //only display result which has address and telephone
-    if($address == null)
+    $poiUid = '';
+    for( $i = 0; $i < $countArray; $i++)
     {
-        $address = '/';
-        continue;
+        $temp = each($resultArray);
+        $itemDataArray = $temp['value'];
+        $name = $itemDataArray['name'];
+        $address = $itemDataArray['address'];
+        $telephone = $itemDataArray['telephone'];
+        //only display result which has address and telephone
+        if($address == null)
+        {
+            $address = '/';
+            continue;
+        }
+        if($telephone == null)
+        {
+            $telephone = '/';
+            continue;    
+        }
+        $poiUid = $itemDataArray['uid'];
+        $location = $itemDataArray['location'];
+        $lat = $location['lat'];
+        $lon = $location['lng'];
+        break;
     }
-    if($telephone == null)
-    {
-        $telephone = '/';
-        continue;    
-    }
-    $uid = $itemDataArray['uid'];
-    $location = $itemDataArray['location'];
-    $lat = $location['lat'];
-    $lon = $location['lng'];
 
     // baidu poi detail
     $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
             'output' => 'json',
             'scope' => '2',
-            'uid' => $uid
+            'uid' => $poiUid
     );
  
     $resultData = getPageData(SEARCH_POI_DETAIL_URL,$postDataArray);
