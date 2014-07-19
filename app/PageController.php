@@ -158,7 +158,7 @@ function getPoiDetailPage($userid)
 {
     
     //http://img0.tuicool.com/3AV3I3.jpg
-    $resultData = getPageData(DETAILPAGE_URL.$uid,'');
+    $resultData = getPageData(DETAILPAGE_URL.$userid,'');
     $jsondecode = convertToJSON($resultData);
     $resultArray = end($jsondecode);
     $countArray = count($resultArray);
