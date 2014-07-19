@@ -154,75 +154,72 @@ function getPoiDetailPage($uid,$latitude,$longitude)
 {
     
     //http://img0.tuicool.com/3AV3I3.jpg
-    // $resultData = getPageData(DETAILPAGE_URL.$uid,$postDataArray);
-    // $jsondecode = convertToJSON($resultData);
-    // $resultArray = end($jsondecode);
-    // $countArray = count($resultArray);
-    // $name=$resultArray[0]['Contact'];
-    // $address=$resultArray[0]['Location'];
-    // $telephone=$resultArray[0]['Mobile']; 
-    // $Description=$resultArray[0]['Description'];
-    // // baidu poi
-    // $positionString = $latitude . ',' . $longitude;
-    // $postDataArray = array('query' => $address,
-    //                        'location' => $positionString,
-    //                        'radius' => '5000',
-    //                        'output' => 'json',
-    //                        'ak' => '869f0962811faf2b184ad35d4e485b27'
-    // );
-    // $resultData = getPageData(SEARCH_POI_LIST_URL,$postDataArray);
-    // $jsondecode = convertToJSON($resultData);
-    // $resultArray = end($jsondecode);
-    // $countArray = count($resultArray);
-    // $temp = each($resultArray);
-    // $itemDataArray = $temp['value'];
-    // $name = $itemDataArray['name'];
-    // $address = $itemDataArray['address'];
-    // $telephone = $itemDataArray['telephone'];
-    // //only display result which has address and telephone
-    // if($address == null)
-    // {
-    //     $address = '/';
-    //     continue;
-    // }
-    // if($telephone == null)
-    // {
-    //     $telephone = '/';
-    //     continue;    
-    // }
-    // $uid = $itemDataArray['uid'];
-    // $location = $itemDataArray['location'];
-    // $lat = $location['lat'];
-    // $lon = $location['lng'];
+    $resultData = getPageData(DETAILPAGE_URL.$uid,$postDataArray);
+    $jsondecode = convertToJSON($resultData);
+    $resultArray = end($jsondecode);
+    $countArray = count($resultArray);
+    $name=$resultArray[0]['Contact'];
+    $address=$resultArray[0]['Location'];
+    $telephone=$resultArray[0]['Mobile']; 
+    $Description=$resultArray[0]['Description'];
+    // baidu poi
+    $positionString = $latitude . ',' . $longitude;
+    $postDataArray = array('query' => $address,
+                           'location' => $positionString,
+                           'radius' => '5000',
+                           'output' => 'json',
+                           'ak' => '869f0962811faf2b184ad35d4e485b27'
+    );
+    $resultData = getPageData(SEARCH_POI_LIST_URL,$postDataArray);
+    $jsondecode = convertToJSON($resultData);
+    $resultArray = end($jsondecode);
+    $countArray = count($resultArray);
+    $temp = each($resultArray);
+    $itemDataArray = $temp['value'];
+    $name = $itemDataArray['name'];
+    $address = $itemDataArray['address'];
+    $telephone = $itemDataArray['telephone'];
+    //only display result which has address and telephone
+    if($address == null)
+    {
+        $address = '/';
+        continue;
+    }
+    if($telephone == null)
+    {
+        $telephone = '/';
+        continue;    
+    }
+    $uid = $itemDataArray['uid'];
+    $location = $itemDataArray['location'];
+    $lat = $location['lat'];
+    $lon = $location['lng'];
 
-    // // baidu poi detail
-    // $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
-    //         'output' => 'json',
-    //         'scope' => '2',
-    //         'uid' => $uid
-    // );
+    // baidu poi detail
+    $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
+            'output' => 'json',
+            'scope' => '2',
+            'uid' => $uid
+    );
  
-    // $resultData = getPageData(SEARCH_POI_DETAIL_URL,$postDataArray);
-    // $jsondecode = convertToJSON($resultData);
-    // $resultArray = end($jsondecode);
-    // $itemDataArray = $resultArray;
+    $resultData = getPageData(SEARCH_POI_DETAIL_URL,$postDataArray);
+    $jsondecode = convertToJSON($resultData);
+    $resultArray = end($jsondecode);
+    $itemDataArray = $resultArray;
  
-    // // $name = $itemDataArray['name'];
-    // $address = $itemDataArray['address'];
-    // // $telephone = $itemDataArray['telephone'];
-    // $location = $itemDataArray['location'];
-    // $lat = $location['lat'];
-    // $lon = $location['lng'];
+    // $name = $itemDataArray['name'];
+    $address = $itemDataArray['address'];
+    // $telephone = $itemDataArray['telephone'];
+    $location = $itemDataArray['location'];
+    $lat = $location['lat'];
+    $lon = $location['lng'];
     
-    // $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
-    // $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
-    // // $contactInformation->setEmail("BMWBill@bmw.com");
-    // $contactInformation->setPhone($telephone);
-    // $contactInformation->setUrl($Description);
-    $lat = '33.3322';
-    $lon = '112.1133';
-    $coordinates = new sdk\component\Coordinates(doubleval($lat), doubleval($lon));
-    $contactInformation = new sdk\component\ContactInformation('name',$coordinates);
+    $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
+    $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
+    // $contactInformation->setEmail("BMWBill@bmw.com");
+    $contactInformation->setPhone($telephone);
+    $contactInformation->setUrl($Description);
+    
     $page = new sdk\page\PoiDetailPage($contactInformation, $name);
     return $page;
 }
