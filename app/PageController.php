@@ -207,7 +207,7 @@ function getPoiDetailPage($userid)
             break;
         }
     }
-
+    echo 'poiUid:'.$poiUid;
     // // baidu poi detail
     $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
             'output' => 'json',
