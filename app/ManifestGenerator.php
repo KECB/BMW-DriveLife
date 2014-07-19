@@ -16,14 +16,14 @@ use \com\bmw\developer\cloud\c1\data as sdk;
                                                     new sdk\TableColRelWidth(20, "caption")));
     $main->addTableConfiguration($tableConfig);
     $manifest->addScreen("mainScreen", $main);
-    // create search list page
+    // create detail page
     $detailPage = new sdk\manifest\TextWithToolbarPageScreen(new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"),
                                                    new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"),
                                                    new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"));
     
     $manifest->addScreen("detailPage", $detailPage);
-
-    $poiDetailPageScreen = new sdk\manifest\BaiduMapPoiDetailPageScreen(new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"),
+    // create poi detail page
+    $poiDetailPage = new sdk\manifest\BaiduMapPoiDetailPageScreen(new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"),
                                             new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"),
                                             new sdk\manifest\RemoteData("http://bmwdrive.duapp.com/app/PageController.php"));
     $manifest->addScreen("poiDetailPage", $poiDetailPage);
