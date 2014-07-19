@@ -157,14 +157,14 @@ function getPoiDetailPage($uid,$latitude,$longitude)
 {
     
     //http://img0.tuicool.com/3AV3I3.jpg
-    $resultData = getPageData(DETAILPAGE_URL.$uid,'');
-    $jsondecode = convertToJSON($resultData);
-    $resultArray = end($jsondecode);
-    $countArray = count($resultArray);
-    $name=$resultArray[0]['Contact'];
-    $address=$resultArray[0]['Location'];
-    $telephone=$resultArray[0]['Mobile']; 
-    $Description=$resultArray[0]['Description'];
+    // $resultData = getPageData(DETAILPAGE_URL.$uid,'');
+    // $jsondecode = convertToJSON($resultData);
+    // $resultArray = end($jsondecode);
+    // $countArray = count($resultArray);
+    // $name=$resultArray[0]['Contact'];
+    // $address=$resultArray[0]['Location'];
+    // $telephone=$resultArray[0]['Mobile']; 
+    // $Description=$resultArray[0]['Description'];
 
     // baidu poi
     // $positionString = $latitude . ',' . $longitude;
