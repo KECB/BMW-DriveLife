@@ -246,7 +246,7 @@ function getPoiDetailPage($uid)
     $contactInformation->setEmail("BMWBill@bmw.com");
     $contactInformation->setPhone("133333333");
     $contactInformation->setUrl("www.bmw.com");
-    $page = new sdk\page\PoiDetailPage($contactInformation, 'bmw');
+    $page = new sdk\page\PoiDetailPage($contactInformation);
     return $page;
 }
 
