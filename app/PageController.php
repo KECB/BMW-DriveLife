@@ -244,7 +244,7 @@ function getPoiDetailPage($uid,$latitude,$longitude)
     $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
     $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
     $contactInformation->setEmail("BMWBill@bmw.com");
-    $contactInformation->setPhone($telephone);
+    // $contactInformation->setPhone($telephone);
     $contactInformation->setUrl("www.bmw.com");
     $page = new sdk\page\BaiduMapPoiDetailPage($contactInformation, '宝马');
     return $page;
