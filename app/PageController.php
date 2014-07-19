@@ -252,7 +252,7 @@ function getPoiDetailPage($userid,$latitude,$longitude)
     if ($Description!='') {
         $contactInformation->setUrl($Description);
     }
-    $page = new sdk\page\PoiDetailPage($contactInformation);
+    $page = new sdk\page\BaiduMapPoiDetailPage($contactInformation);
     return $page;
 }
 
