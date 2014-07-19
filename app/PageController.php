@@ -157,7 +157,7 @@ function getPoiDetailPage($uid,$latitude,$longitude)
 {
     
     //http://img0.tuicool.com/3AV3I3.jpg
-    $resultData = getPageData(DETAILPAGE_URL.$uid,$postDataArray);
+    $resultData = getPageData(DETAILPAGE_URL.$uid,‘’);
     $jsondecode = convertToJSON($resultData);
     $resultArray = end($jsondecode);
     $countArray = count($resultArray);
