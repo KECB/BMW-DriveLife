@@ -202,7 +202,9 @@ function getPoiDetailPage($userid)
         $location = $itemDataArray['location'];
         $lat = $location['lat'];
         $lon = $location['lng'];
-        break;
+        if ($poiUid!='') {
+            break;
+        }
     }
 
     // // baidu poi detail
