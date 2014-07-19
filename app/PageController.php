@@ -180,13 +180,13 @@ function getPoiDetailPage($userid)
     $resultArray = end($jsondecode);
     $countArray = count($resultArray);
     $poiUid = '';
-    for( $i = 0; $i < $countArray; $i++)
-    {
+    //for( $i = 0; $i < $countArray; $i++)
+    //{
         $temp = each($resultArray);
         $itemDataArray = $temp['value'];
-        $name = $itemDataArray['name'];
-        $address = $itemDataArray['address'];
-        $telephone = $itemDataArray['telephone'];
+        $name = $itemDataArray[0]['name'];
+        $address = $itemDataArray[0]['address'];
+        $telephone = $itemDataArray[0]['telephone'];
         //only display result which has address and telephone
         // if($address == null)
         // {
@@ -198,14 +198,12 @@ function getPoiDetailPage($userid)
         //     $telephone = '/';
         //     continue;    
         // }
-        $poiUid = $itemDataArray['uid'];
-        $location = $itemDataArray['location'];
+        $poiUid = $itemDataArray[0]['uid'];
+        $location = $itemDataArray[0]['location'];
         $lat = $location['lat'];
         $lon = $location['lng'];
-        if ($poiUid!='') {
-            break;
-        }
-    }
+        
+    //}
 
     // // baidu poi detail
     $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
