@@ -254,6 +254,9 @@ function getPoiDetailPage($userid,$latitude,$longitude)
     }
     // $contactInformation->setBearing(0);
     $page = new sdk\page\BaiduMapPoiDetailPage($contactInformation);
+    $page->setNoMap(false);
+    $page->setNoNavigation(false);
+    $page->setZoom(0);
     return $page;
 }
 
