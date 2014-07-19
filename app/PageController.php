@@ -188,21 +188,20 @@ function getPoiDetailPage($userid)
         $address = $itemDataArray['address'];
         $telephone = $itemDataArray['telephone'];
         //only display result which has address and telephone
-        if($address == null)
-        {
-            $address = '/';
-            continue;
-        }
-        if($telephone == null)
-        {
-            $telephone = '/';
-            continue;    
-        }
+        // if($address == null)
+        // {
+        //     $address = '/';
+        //     continue;
+        // }
+        // if($telephone == null)
+        // {
+        //     $telephone = '/';
+        //     continue;    
+        // }
         $poiUid = $itemDataArray['uid'];
         $location = $itemDataArray['location'];
         $lat = $location['lat'];
         $lon = $location['lng'];
-        break;
     }
 
     // // baidu poi detail
