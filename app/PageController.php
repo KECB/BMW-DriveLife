@@ -171,7 +171,7 @@ function getPoiDetailPage($userid)
     $positionString = $latitude . ',' . $longitude;
     $postDataArray = array('query' => $address,
                            'location' => $positionString,
-                           'radius' => '5000',
+                           'radius' => '500000',
                            'output' => 'json',
                            'ak' => '869f0962811faf2b184ad35d4e485b27'
     );
@@ -203,11 +203,9 @@ function getPoiDetailPage($userid)
         $lat = $location['lat'];
         $lon = $location['lng'];
         if ($poiUid!='') {
-            echo 'poiUid:'.$poiUid;
             break;
         }
     }
-    echo 'poiUid:'.$poiUid;
     // // baidu poi detail
     $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
             'output' => 'json',
