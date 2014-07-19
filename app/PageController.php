@@ -180,9 +180,9 @@ function getPoiDetailPage($userid)
     $resultArray = end($jsondecode);
     $countArray = count($resultArray);
     $poiUid = '';
-    for( $i = 0; $i < 1; $i++)
+    for( $i = 0; $i < 2; $i++)
     {
-        $temp = each($resultArray);
+        $temp = $resultArray[$i];
         $itemDataArray = $temp['value'];
         $name = $itemDataArray['name'];
         $address = $itemDataArray['address'];
