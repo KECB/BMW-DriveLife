@@ -36,7 +36,7 @@ try{
             echo $eventsPage->toJson();
             break;
         case SCREEN_ID_POIDETAILPAGE:
-            $poiPage = getPoiDetailPage($_GET['uid']);
+            $poiPage = getPoiDetailPage($_GET['uid'],$_GET['lat'], $_GET['lon']);
             echo $poiPage->toJson();
             break;
         default:
@@ -154,7 +154,7 @@ function getDetailPage($uid)
     return $page;
 }
 
-function getPoiDetailPage($userid)
+function getPoiDetailPage($userid,$latitude,$longitude)
 {
     
     //http://img0.tuicool.com/3AV3I3.jpg
