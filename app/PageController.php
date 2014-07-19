@@ -219,7 +219,9 @@ function getPoiDetailPage($uid,$latitude,$longitude)
     // // $contactInformation->setEmail("BMWBill@bmw.com");
     // $contactInformation->setPhone($telephone);
     // $contactInformation->setUrl($Description);
-    $coordinates = new sdk\component\Coordinates('33.3322','112.1122');
+    $lat = '33.3322';
+    $lon = '112.1133';
+    $coordinates = new sdk\component\Coordinates(doubleval($lat), doubleval($lon));
     $contactInformation = new sdk\component\ContactInformation('name',$coordinates);
     $page = new sdk\page\PoiDetailPage($contactInformation, $name);
     return $page;
