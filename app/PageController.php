@@ -287,6 +287,6 @@ function convertToJSON($json)
 	catch (Exception $e){
 	    $errorPage = new sdk\page\ErrorPage();
 	    $errorPage -> setNoContentAvailableError();
-	    echo "Error: " . $errorPage -> toJson() . "Screen : " . $_GET["screenID"];
+	    //secho "Error: " . $errorPage -> toJson() . "Screen : " . $_GET["screenID"];
 	}
 }
