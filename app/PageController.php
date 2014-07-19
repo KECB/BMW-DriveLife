@@ -33,7 +33,7 @@ try{
             echo $eventsPage->toJson();
             break;
         case SCREEN_ID_POIDETAILPAGE:
-            $poiPage = getPoiDetailPage($_GET['uid']);
+            $poiPage = getPoiDetailPage($_GET['uid'],$_GET['lat'], $_GET['lon']);
             echo $poiPage->toJson();    
         default:
             throw new Exception("Unexpected Screen ID" . $_GET["screenID"]);
@@ -62,7 +62,7 @@ function getMainPage()
  //                           'ak' => '869f0962811faf2b184ad35d4e485b27'
  //    );
      
-    $resultData = getPageData(SEARCH_LIST_URL,$postDataArray);
+    $resultData = getPageData(SEARCH_LIST_URL,"");
     $jsondecode = convertToJSON($resultData);
     $resultArray = end($jsondecode);
     $countArray = count($resultArray);
@@ -106,33 +106,8 @@ function getMainPage()
 
 function getDetailPage($uid)
 {
-    // baidu poi detail
-    // $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
-    //         'output' => 'json',
-    //         'scope' => '2',
-    //         'uid' => $uid
-    // );
- 
-    // $resultData = getPageData(SEARCH_POI_DETAIL_URL,$postDataArray);
-    // $jsondecode = convertToJSON($resultData);
-    // $resultArray = end($jsondecode);
-    // $itemDataArray = $resultArray;
- 
-    // $name = $itemDataArray['name'];
-    // $address = $itemDataArray['address'];
-    // $telephone = $itemDataArray['telephone'];
-    // $location = $itemDataArray['location'];
-    // $lat = $location['lat'];
-    // $lon = $location['lng'];
- 
-    // $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
-    // $contactInformation->setAddress(new sdk\component\Address("", "", "", "ÖÐ¹ú", $address));
-    // $contactInformation->setEmail("BMWBill@bmw.com");
-    // $contactInformation->setPhone($telephone);
-    // $contactInformation->setUrl("www.bmw.com");
-    // $page = new sdk\page\PoiDetailPage($contactInformation, $_SESSION[KEYWORD]);
     //http://img0.tuicool.com/3AV3I3.jpg
-    $resultData = getPageData(DETAILPAGE_URL.$uid,$postDataArray);
+    $resultData = getPageData(DETAILPAGE_URL.$uid,"");
     $jsondecode = convertToJSON($resultData);
     $resultArray = end($jsondecode);
     $countArray = count($resultArray);
@@ -175,8 +150,9 @@ function getDetailPage($uid)
     return $page;
 }
 
-function getPoiDetailPage($uid)
+function getPoiDetailPage($uid,$latitude,$longitude)
 {
+    
     // baidu poi detail
     // $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
     //         'output' => 'json',
@@ -206,43 +182,64 @@ function getPoiDetailPage($uid)
     $address=$resultArray[0]['Location'];
     $telephone=$resultArray[0]['Mobile']; 
     $Description=$resultArray[0]['Description'];
+    // baidu poi
+    $positionString = $latitude . ',' . $longitude;
+    $postDataArray = array('query' => $address,
+                           'location' => $positionString,
+                           'radius' => '5000',
+                           'output' => 'json',
+                           'ak' => '869f0962811faf2b184ad35d4e485b27'
+    );
+    $resultData = getPageData(SEARCH_POI_LIST_URL,$postDataArray);
+    $jsondecode = convertToJSON($resultData);
+    $resultArray = end($jsondecode);
+    $countArray = count($resultArray);
+    $temp = each($resultArray);
+    $itemDataArray = $temp['value'];
+    $name = $itemDataArray['name'];
+    $address = $itemDataArray['address'];
+    $telephone = $itemDataArray['telephone'];
+    //only display result which has address and telephone
+    if($address == null)
+    {
+        $address = '/';
+        continue;
+    }
+    if($telephone == null)
+    {
+        $telephone = '/';
+        continue;    
+    }
+    $uid = $itemDataArray['uid'];
+    $location = $itemDataArray['location'];
+    $lat = $location['lat'];
+    $lon = $location['lng'];
 
-    // $page = new sdk\page\TextWithToolbarPage();
-    // //
-    // $currentParagraph = new sdk\component\Paragraph();
-    // $currentParagraph->setText($name);
-    // $page->addParagraph($currentParagraph);
-
-    // $currentParagraph = new sdk\component\Paragraph();
-    // $currentParagraph->setText($address);
-    // $page->addParagraph($currentParagraph);
-
-    // $currentParagraph = new sdk\component\Paragraph();
-    // $currentParagraph->setText($telephone);
-    // $page->addParagraph($currentParagraph);
-
-    // $currentParagraph = new sdk\component\Paragraph();
-    // $currentParagraph->setText($Description);
-    // $currentParagraph->setTTS(true);
-    // $page->addParagraph($currentParagraph);
-
-    // if ($telephone!='') {
-    //     $toolbarPhoneButton = new sdk\component\ToolbarPhoneButton($telephone,$telephone);
-    //     $page->addToolbarItem($toolbarPhoneButton);
-    // }
-    // if ($address!='') {
-    //     $coordinates = new sdk\component\Coordinates('31.1632','112.1536');
-    //     $poiEntry = new sdk\component\PoiEntry($name,$coordinates);
-    //     $toolbarNavButton = new sdk\component\ToolbarNavButton($poiEntry,$address);
-    //     $page->addToolbarItem($toolbarNavButton);
-    // }
+    // baidu poi detail
+    $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
+            'output' => 'json',
+            'scope' => '2',
+            'uid' => $uid
+    );
+ 
+    $resultData = getPageData(SEARCH_POI_DETAIL_URL,$postDataArray);
+    $jsondecode = convertToJSON($resultData);
+    $resultArray = end($jsondecode);
+    $itemDataArray = $resultArray;
+ 
+    // $name = $itemDataArray['name'];
+    $address = $itemDataArray['address'];
+    // $telephone = $itemDataArray['telephone'];
+    $location = $itemDataArray['location'];
+    $lat = $location['lat'];
+    $lon = $location['lng'];
     
     $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
     $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
     // $contactInformation->setEmail("BMWBill@bmw.com");
     $contactInformation->setPhone($telephone);
     $contactInformation->setUrl($Description);
-    $page = new sdk\page\BaiduMapPoiDetailPage($contactInformation, $name);
+    $page = new sdk\page\PoiDetailPage($contactInformation, $name);
     return $page;
 }
 
@@ -267,8 +264,8 @@ function getPageData($URLHeader,$postDataArray)
         }
     }
     $resultURL = $resultURL . $postPart;
-    // $html = file_get_contents($resultURL);
-    $html = file_get_contents($URLHeader);
+    $html = file_get_contents($resultURL);
+    // $html = file_get_contents($URLHeader);
     return  $html;
 }
  
