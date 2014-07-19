@@ -243,7 +243,7 @@ function getPoiDetailPage($userid)
  
     $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
     $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
-    // $contactInformation->setEmail("BMWBill@bmw.com");
+    $contactInformation->setEmail("BMWBill@bmw.com");
     $contactInformation->setPhone($telephone);
     $contactInformation->setUrl($Description);
     $page = new sdk\page\PoiDetailPage($contactInformation);
