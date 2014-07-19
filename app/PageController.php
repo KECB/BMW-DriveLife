@@ -180,9 +180,9 @@ function getPoiDetailPage($userid)
     $resultArray = end($jsondecode);
     $countArray = count($resultArray);
     $poiUid = '';
-    for( $i = 0; $i < 2; $i++)
+    for( $i = 0; $i < $countArray; $i++)
     {
-        $temp = $resultArray[$i];
+        $temp = each($resultArray);
         $itemDataArray = $temp['value'];
         $name = $itemDataArray['name'];
         $address = $itemDataArray['address'];
@@ -202,6 +202,7 @@ function getPoiDetailPage($userid)
         $location = $itemDataArray['location'];
         $lat = $location['lat'];
         $lon = $location['lng'];
+        break;
     }
 
     // // baidu poi detail
