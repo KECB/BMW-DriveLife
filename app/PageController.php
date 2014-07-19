@@ -36,7 +36,7 @@ try{
             echo $eventsPage->toJson();
             break;
         case SCREEN_ID_POIDETAILPAGE:
-            $poiPage = getPoiDetailPage($_GET['uid'],$_GET['lat'], $_GET['lon']);
+            $poiPage = getPoiDetailPage($_GET['uid']);
             echo $poiPage->toJson();    
         default:
             throw new Exception("Unexpected Screen ID" . $_GET["screenID"]);
@@ -153,7 +153,7 @@ function getDetailPage($uid)
     return $page;
 }
 
-function getPoiDetailPage($uid,$latitude,$longitude)
+function getPoiDetailPage($uid)
 {
     
     //http://img0.tuicool.com/3AV3I3.jpg
