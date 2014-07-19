@@ -244,14 +244,15 @@ function getPoiDetailPage($userid,$latitude,$longitude)
     // $lon = $location['lng'];
  
     $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
-    $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
+    // $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
     // $contactInformation->setEmail("BMWBill@bmw.com");
     if ($telephone!='') {
         $contactInformation->setPhone($telephone);
     }
     if ($Description!='') {
-        $contactInformation->setUrl($Description);
+        // $contactInformation->setUrl($Description);
     }
+    $contactInformation->setBearing(0);
     $page = new sdk\page\BaiduMapPoiDetailPage($contactInformation);
     return $page;
 }
