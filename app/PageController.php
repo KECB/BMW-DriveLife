@@ -242,7 +242,7 @@ function getPoiDetailPage($uid)
     // $contactInformation->setEmail("BMWBill@bmw.com");
     $contactInformation->setPhone($telephone);
     $contactInformation->setUrl($Description);
-    $page = new sdk\page\PoiDetailPage($contactInformation, $name);
+    $page = new sdk\page\BaiduMapPoiDetailPage($contactInformation, $name);
     return $page;
 }
 
