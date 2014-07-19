@@ -223,26 +223,26 @@ function getPoiDetailPage($uid)
     // $lat = $location['lat'];
     // $lon = $location['lng'];
     // baidu poi detail
-    $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
-            'output' => 'json',
-            'scope' => '2',
-            'uid' => '8ee4560cf91d160e6cc02cd7'
-    );
+    // $postDataArray = array('ak' => '869f0962811faf2b184ad35d4e485b27',
+    //         'output' => 'json',
+    //         'scope' => '2',
+    //         'uid' => '8ee4560cf91d160e6cc02cd7'
+    // );
  
-    $resultData = getPageData(SEARCH_POI_DETAIL_URL,$postDataArray);
-    $jsondecode = convertToJSON($resultData);
-    $resultArray = end($jsondecode);
-    $itemDataArray = $resultArray;
+    // $resultData = getPageData(SEARCH_POI_DETAIL_URL,$postDataArray);
+    // $jsondecode = convertToJSON($resultData);
+    // $resultArray = end($jsondecode);
+    // $itemDataArray = $resultArray;
  
-    $name = $itemDataArray['name'];
-    $address = $itemDataArray['address'];
-    $telephone = $itemDataArray['telephone'];
-    $location = $itemDataArray['location'];
-    $lat = $location['lat'];
-    $lon = $location['lng'];
+    // $name = $itemDataArray['name'];
+    // $address = $itemDataArray['address'];
+    // $telephone = $itemDataArray['telephone'];
+    // $location = $itemDataArray['location'];
+    // $lat = $location['lat'];
+    // $lon = $location['lng'];
  
-    $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval($lat), doubleval($lon)));
-    $contactInformation->setAddress(new sdk\component\Address("", "", "", "", $address));
+    $contactInformation = new sdk\component\ContactInformation($name, new sdk\component\Coordinates(doubleval("33.333"), doubleval("121.112")));
+    $contactInformation->setAddress(new sdk\component\Address("", "", "", "", "11123"));
     $contactInformation->setEmail("BMWBill@bmw.com");
     $contactInformation->setPhone("133333333");
     $contactInformation->setUrl("www.bmw.com");
