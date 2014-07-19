@@ -281,12 +281,12 @@ function getPageData($URLHeader,$postDataArray)
  */
 function convertToJSON($json)
 {
-	try{
+	// try{
     	return json_decode($json,true);
-	}
-	catch (Exception $e){
-	    $errorPage = new sdk\page\ErrorPage();
-	    $errorPage -> setNoContentAvailableError();
+	// }
+	// catch (Exception $e){
+	    // $errorPage = new sdk\page\ErrorPage();
+	    // $errorPage -> setNoContentAvailableError();
 	    //secho "Error: " . $errorPage -> toJson() . "Screen : " . $_GET["screenID"];
-	}
+	// }
 }
