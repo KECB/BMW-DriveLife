@@ -2,7 +2,7 @@
 include 'contentAdapter_c1.php';
 use \com\bmw\developer\cloud\c1\data as sdk;
     // create manifest object
-    $header = new sdk\manifest\Header("DriveLife", "1.0", "mainScreen", false, "icon-event.png");
+    $header = new sdk\manifest\Header("DriveLife", "1.0", "mainScreen", true, "icon-event.png");
     $manifest = new sdk\manifest\Manifest($header);
  
     // create main screen, a list of todo things
