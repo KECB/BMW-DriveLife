@@ -236,7 +236,7 @@ function getPoiDetailPage($uid,$latitude,$longitude)
  
     $name = $itemDataArray['name'];
     $address = $itemDataArray['address'];
-    $telephone = $itemDataArray['telephone'];
+    // $telephone = $itemDataArray['telephone'];
     $location = $itemDataArray['location'];
     $lat = $location['lat'];
     $lon = $location['lng'];
