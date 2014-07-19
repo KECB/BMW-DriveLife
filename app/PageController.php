@@ -246,7 +246,7 @@ function getPoiDetailPage($uid,$latitude,$longitude)
     $contactInformation->setEmail("BMWBill@bmw.com");
     $contactInformation->setPhone($telephone);
     $contactInformation->setUrl("www.bmw.com");
-    $page = new sdk\page\PoiDetailPage($contactInformation, '宝马');
+    $page = new sdk\page\BaiduMapPoiDetailPage($contactInformation, '宝马');
     return $page;
 }
 
