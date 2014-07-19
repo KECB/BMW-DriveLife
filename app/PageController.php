@@ -13,6 +13,9 @@ define("SCREEN_ID_POIDETAILPAGE", "poiDetailPage");
 $userId='test';
 define("SEARCH_LIST_URL", 'http://115.28.141.68/BMW/index.php/home/Index/index/userId/'. $userId);
 define("DETAILPAGE_URL", 'http://115.28.141.68/BMW/index.php/home/Index/getDetailData/id/');
+define("SEARCH_POI_LIST_URL", "http://api.map.baidu.com/place/v2/search");
+define("SEARCH_POI_DETAIL_URL", 'http://api.map.baidu.com/place/v2/detail');
+
 
 // get sid 
 $sid = sessionID();
@@ -162,6 +165,7 @@ function getPoiDetailPage($uid,$latitude,$longitude)
     $address=$resultArray[0]['Location'];
     $telephone=$resultArray[0]['Mobile']; 
     $Description=$resultArray[0]['Description'];
+
     // baidu poi
     $positionString = $latitude . ',' . $longitude;
     $postDataArray = array('query' => $address,
